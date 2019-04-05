@@ -69,7 +69,7 @@ Required format:
 ...
 ```
 
-**Expression file***
+**Expression file**
 The file for expression in the same input format as required by NEEP.
 Required format:
 ```
@@ -81,17 +81,17 @@ Required format:
 ## Usage
 command: multi\_granularity\_graphs
 
-required parameters:
-	-d	--domain2domain=		<Domain-domain interaction file>
-	-s	--gene2svars=			<Gene to splice variant file>
-	-p	--svar2protein=			<Splice variant to protein file>
-	-g	--gene2gene=			<Gene to gene file; products are physical PPIs>
-	-i	--svar2domains=			<Splice variant to domain file>
-	-a	--significant_svars=	<NEEP output; 1st col: name, 4th col: adjusted significance value>
-	-e	--expression=			<CSV expression file>
+required parameters:\
+	-d	--domain2domain=		<Domain-domain interaction file>\
+	-s	--gene2svars=			<Gene to splice variant file>\
+	-p	--svar2protein=			<Splice variant to protein file>\
+	-g	--gene2gene=			<Gene to gene file; products are physical PPIs>\
+	-i	--svar2domains=			<Splice variant to domain file>\
+	-a	--significant_svars=	<NEEP output; 1st col: name, 4th col: adjusted significance value>\
+	-e	--expression=			<CSV expression file>\
 	
-optional parameters:
-	-m	--min_threshold=		<The minimum threshold used for NEEP. (default: 0.15)>
-	-o	--output=				<The file for the graph paths. (default: multi\_granularity\_graphs.tsv)>
-	-h	--help=					<Print help message>
+optional parameters:\
+	-m	--min_threshold=		<The minimum threshold used for NEEP. (default: 0.15)>\
+	-o	--output=				<The file for the graph paths. (default: multi\_granularity\_graphs.tsv)>\
+	-h	--help=					<Print help message>\
 
