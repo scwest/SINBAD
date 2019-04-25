@@ -55,7 +55,8 @@ class Graphs():
                         if domain1 not in domain_types_raw:
                             domain_types_raw[domain1] = '-'
                         edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
-                        graph.append(edge)
+                        if edge not in graph:
+                            graph.append(edge)
                         
         sys.stdout.write('\n\tdone\n')
         sys.stdout.write('\tnumber of PPIs: '+str(num_gene2gene) + '\n')
