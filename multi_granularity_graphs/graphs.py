@@ -43,7 +43,7 @@ class Graphs():
                         
                         edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
                         graph.append(edge)
-        sys.stdout.write('\n\tdone: '+str(len(graph))' MGGs found\n')            
+        sys.stdout.write('\n\tdone: '+str(len(graph))+' MGGs found\n')            
         return graph
     
     def _get_domain_pairs(self, gene, svar2):
