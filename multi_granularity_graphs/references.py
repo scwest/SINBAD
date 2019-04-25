@@ -4,7 +4,7 @@ import numpy as np
 class References():
     def __init__(self):
         self.gene2gene = defaultdict(set)
-        self.gene2svar = defaultdict(set)
+        self.gene2svars = defaultdict(set)
         self.svar2protein = {}
         self.domain2domain = defaultdict(set)
         self.svar2domains = defaultdict(set)
