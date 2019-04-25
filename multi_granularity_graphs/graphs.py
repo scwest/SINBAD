@@ -15,11 +15,6 @@ class Graphs():
         num_interactions = 0
         num_interactions_with_dom = 0
         
-        for iso in self.ref.significant_svars:
-            gene = iso.split('-')[0]
-            if gene in self.ref.gene2gene:
-                print(gene)
-        
         l = str(len(self.ref.gene2gene))
         c = 1
         # only allow gene-genes that are already PPI (handled in References())
@@ -30,7 +25,6 @@ class Graphs():
             c += 1
             
             # ignore genes without any significant splice variants
-            
             if not sum([(svar in self.ref.significant_svars) for svar in self.ref.gene2svars[gene1]]): continue
             # command could be faster by continuing at first False instance
             num_gene_with_sig += 1
