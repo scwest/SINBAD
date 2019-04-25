@@ -44,7 +44,7 @@ class Inputs():
         if not opts:
             self.help()
             sys.exit(0)
-        return
+        return values
     
     def help(self):
         out = '\n'
