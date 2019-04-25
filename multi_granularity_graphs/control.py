@@ -7,12 +7,12 @@ class Control():
         inputs = Inputs()
         
         references = References()
-        references.set_all_references(inputs)
+        references.set_all_references(inputs.args)
         
-        graphs = Graphs(references, inputs['min_threshold'])
+        graphs = Graphs(references, inputs.args['min_threshold'])
         graphs.construct()
         
-        output = Output(inputs['output'])
+        output = Output(inputs.args['output'])
         output.export(graphs)
         
         return
