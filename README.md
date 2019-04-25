@@ -88,10 +88,10 @@ required parameters:\
 	-g	--gene2gene=			<Gene to gene file; products are physical PPIs>\
 	-i	--svar2domains=			<Splice variant to domain file>\
 	-a	--significant_svars=	<NEEP output; 1st col: name, 4th col: adjusted significance value>\
-	-e	--expression=			<CSV expression file>\
+	-e	--expression=			<CSV expression file>
 	
 optional parameters:\
 	-m	--min_threshold=		<The minimum threshold used for NEEP. (default: 0.15)>\
 	-o	--output=				<The file for the graph paths. (default: multi\_granularity\_graphs.tsv)>\
-	-h	--help=					<Print help message>\
+	-h	--help=					<Print help message>
 
