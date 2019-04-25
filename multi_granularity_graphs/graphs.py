@@ -86,11 +86,11 @@ class Graphs():
         
         # identify domain types and save
         for dom in sig - insig:
-            domtypes[dom] = 'gained'
+            domain_types[dom] = 'gained'
         for dom in insig - sig:
-            domtypes[dom] = 'ghost'
+            domain_types[dom] = 'ghost'
         for dom in sig.intersection(insig):
-            domtypes[dom] = 'neither'
+            domain_types[dom] = 'neither'
         return domain_types
     
     def _has_enough_expression(self, svar):
