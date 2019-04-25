@@ -56,12 +56,13 @@ class Graphs():
                             domain_types_raw[domain1] = '-'
                         edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
                         graph.append(edge)
+                        
         sys.stdout.write('\n\tdone\n')
         sys.stdout.write('\tnumber of PPIs: '+str(num_gene2gene) + '\n')
         sys.stdout.write('\t   with significant splice variant: '+str(num_gene_with_sig) +'\n')
         sys.stdout.write('\tnumber of splice variant interactions: '+str(num_interactions) + '\n')
         sys.stdout.write('\t   with gained/ghost domains: '+str(num_interactions_with_dom) + '\n')
-        sys.stdout.write('\tMGGs found: '+str(len(graph))+'\n')            
+        sys.stdout.write('\tMGG paths found: '+str(len(graph))+'\n')            
         return graph
     
     def _get_domain_pairs(self, gene, svar2):
