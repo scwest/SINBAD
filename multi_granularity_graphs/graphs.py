@@ -7,14 +7,19 @@ class Graphs():
         self.min_threshold = min_threshold
     
     def construct(self):
-        sys.stdout.write('Constructing MGGs')
-        sys.stdout.flush()
+        sys.stdout.write('Constructing MGGs\n')
         graph = []
+        
+        num_gene2gene = 0
+        num_gene_with_sig = 0
+        num_interactions = 0
+        num_interactions_with_dom = 0
         
         l = str(len(self.ref.gene2gene))
         c = 1
         # only allow gene-genes that are already PPI (handled in References())
         for gene1, gene2s in self.ref.gene2gene.items(): 
+            num_gene2gene += 1
             sys.stdout.write('\r\t'+str(c)+' of '+l)
             sys.stdout.flush()
             c += 1
@@ -22,12 +27,15 @@ class Graphs():
             # ignore genes without any significant splice variants
             if not sum([(svar in self.ref.significant_svars) for svar in self.ref.gene2svars[gene1]]): continue
             # command could be faster by continuing at first False instance
+            num_gene_with_sig += 1
             
             domain_types_raw = self._get_domain_types(gene1, False)
             domain_types_filt = self._get_domain_types(gene1, True)
             
             for gene2 in gene2s:
                 for svar1, svar2 in itertools.product(self.ref.gene2svars[gene1], self.ref.gene2svars[gene2]):
+                    num_interactions += 1
+                    
                     # ignore splice variants without known protein products
                     if svar1 not in self.ref.svar2protein:
                         continue
@@ -41,10 +49,16 @@ class Graphs():
                         #    i.e. domains without unique attributes for survival significance
                         if domain_types_raw[domain1] == 'neither' and domain_types_filt[domain1] == 'neither':
                             continue
+                        num_interactions_with_dom += 1
                         
                         edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
                         graph.append(edge)
-        sys.stdout.write('\n\tdone: '+str(len(graph))+' MGGs found\n')            
+        sys.stdout.write('\n\tdone\n')
+        sys.stdout.write('\tnumber of PPIs: '+str(num_gene2gene) + '\n')
+        sys.stdout.write('\t   with significant splice variant: '+str(num_gene_with_sig) +'\n')
+        sys.stdout.write('\tnumber of splice variant interactions: '+str(num_interactions) + '\n')
+        sys.stdout.write('\t   with gained/ghost domains: '+str(num_interactions_with_dom) + '\n')
+        sys.stdout.write('\tMGGs found: '+str(len(graph))+'\n')            
         return graph
     
     def _get_domain_pairs(self, gene, svar2):
