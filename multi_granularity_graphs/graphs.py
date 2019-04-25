@@ -25,9 +25,6 @@ class Graphs():
             c += 1
             
             # ignore genes without any significant splice variants
-            for svar in self.ref.gene2svars[gene1]:
-                if svar in self.ref.significant_svars:
-                    print(svar)
             
             if not sum([(svar in self.ref.significant_svars) for svar in self.ref.gene2svars[gene1]]): continue
             # command could be faster by continuing at first False instance
