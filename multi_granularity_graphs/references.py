@@ -39,9 +39,14 @@ class References():
     
     def set_gene2svars(self, filename):
         with open(filename, 'r') as infile:
+            c = 0
             for line in infile:
-                ensg, enst = line.strip().split('\t')
-                self.gene2svars[ensg].add(enst)
+                c += 1
+                try:
+                    ensg, enst = line.strip().split('\t')
+                    self.gene2svars[ensg].add(enst)
+                except:
+                    print('Warning: Issue with gene2svars file. See line number'+str(c)+':\n'+line)
         return
     
     def set_svar2protein(self, filename):
