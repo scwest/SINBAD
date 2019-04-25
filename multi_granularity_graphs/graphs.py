@@ -18,7 +18,7 @@ class Graphs():
             c += 1
             
             # ignore genes without any significant splice variants
-            if not sum([(svar in ref.sig_svar) for svar in self.ref.gene2svars[gene1]]): continue
+            if not sum([(svar in self.ref.sig_svar) for svar in self.ref.gene2svars[gene1]]): continue
             # command could be faster by continuing at first False instance
             
             domain_types_raw = self._get_domain_types(gene1, False)
