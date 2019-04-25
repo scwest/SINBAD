@@ -76,7 +76,6 @@ class References():
                 line = line.strip().split('\t')
                 if float(line[4]) < 0.1:
                     self.significant_svars.add(line[0])
-        print(self.significant_svars)
         return
     
     def set_proportion_expressed(self, filename):

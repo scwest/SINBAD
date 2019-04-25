@@ -1,4 +1,4 @@
-# protein\_mechanism\_graphs
+# SINBAD: Survival-significant Isoform Networks By Altered Domain-inclusion
 ## Purpose
 This code should be used for identifying potential protein-protein interaction (PPI) mechanistic changes based on survival analysis significance. In short, the code identifies multi-granularity graphs as *splice\_variant-domain-domain-splice\_variant* paths. 
 
@@ -76,6 +76,12 @@ Required format:
 ,<patient 1>,<patient 2>,...,<final patient>
 <splice variant or gene>,<patient 1 expression>,<patient 2 expression>,...,<final patient expression>
 ...
+```
+
+## Test
+```console
+cd SINBAD/test/
+source test_output.txt
 ```
 
 ## Usage
