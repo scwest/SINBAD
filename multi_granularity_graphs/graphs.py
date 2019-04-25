@@ -94,7 +94,7 @@ class Graphs():
         return domain_types
     
     def _has_enough_expression(self, svar):
-        if self.proportion_expressed[svar] < 1-self.min_threshold:
+        if self.ref.proportion_expressed[svar] < 1-self.min_threshold:
             return False
         return True
     
