@@ -1,6 +1,6 @@
 # FIRST
 from multi_granularity_graphs.inputs import Inputs
-from multi_granularity_graphs.outputs import Output
+from multi_granularity_graphs.output import Output
 
 # Any order
 from multi_granularity_graphs.references import References
