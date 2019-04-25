@@ -14,7 +14,7 @@ class Inputs():
             opts, args = getopt.getopt(sys.argv[1:], shortopts, longopts)
         except getopt.GetoptError as err:
             print(err)
-            usage()
+            self.help()
             sys.exit(2)
             
         values = {'min_threshold':0.15, 'output':'multi_granularity_graphs.tsv'}
