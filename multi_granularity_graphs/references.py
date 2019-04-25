@@ -11,7 +11,7 @@ class References():
         self.significant_svars = set()
         self.proportion_expressed = {}
         
-    def set_all_referenes(self, locations):
+    def set_all_references(self, locations):
         self.set_domain2domain(locations['domain2domain'])
         self.set_gene2svars(locations['gene2svars'])
         self.set_svar2protein(locations['svar2protein'])
