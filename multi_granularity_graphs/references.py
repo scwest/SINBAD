@@ -14,6 +14,7 @@ class References():
         
     def set_all_references(self, locations):
         sys.stdout.write('Uploading input ... ')
+        sys.stdout.flush()
         self.set_domain2domain(locations['domain2domain'])
         self.set_gene2svars(locations['gene2svars'])
         self.set_svar2protein(locations['svar2protein'])

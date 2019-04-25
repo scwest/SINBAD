@@ -8,6 +8,7 @@ class Graphs():
     
     def construct(self):
         sys.stdout.write('Constructing MGGs')
+        sys.stdout.flush()
         graph = []
         
         l = str(len(self.ref.gene2gene))

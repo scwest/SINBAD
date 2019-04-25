@@ -1,3 +1,5 @@
+import sys 
+
 class Output():
     def __init__(self, output_filename):
         self._graph_filename = output_filename
@@ -7,6 +9,7 @@ class Output():
             sys.stdout.write('No graphs to export\n')
             return
         sys.stdout.write('Exporting MGGs ... ')
+        sys.stdout.flush()
         with open(self._graph_filename, 'w') as outfile:
             outfile.write('Significant splice variant\tDomain\tDomain\t'+\
                           'Splice variant2\tDomain type (all isoforms)\t'+\

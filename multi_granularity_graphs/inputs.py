@@ -7,6 +7,7 @@ class Inputs():
         
     def parse_command_line(self):
         sys.stdout.write('Collecting input ... ')
+        sys.stdout.flush()
         shortopts = 'd:s:p:g:i:a:e:hm:o:'
         longopts = ['domain2domain=', 'gene2svars=', 'svar2protein=', 'gene2gene=', \
                     'svar2domains=', 'significant_svars=', 'expression=', 'help',\
