@@ -46,7 +46,7 @@ class References():
                     ensg, enst = line.strip().split('\t')
                     self.gene2svars[ensg].add(enst)
                 except:
-                    print('Warning: Issue with gene2svars file. See line number'+str(c)+':\n'+line)
+                    print('Warning: Issue with gene2svars file. See line number '+str(c)+':\n'+line)
         return
     
     def set_svar2protein(self, filename):
