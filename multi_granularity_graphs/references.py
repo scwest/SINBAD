@@ -48,7 +48,7 @@ class References():
                 c += 1
                 try:
                     ensg, rest = line.strip().split('\t')
-                    for iso in rest:
+                    for iso in rest.split(','):
                         self.gene2svars[ensg].add(iso)
                 except:
                     print('Warning: Issue with gene2svars file. See line number '+str(c)+':\n'+line)
