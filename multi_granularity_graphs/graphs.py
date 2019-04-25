@@ -15,6 +15,11 @@ class Graphs():
         num_interactions = 0
         num_interactions_with_dom = 0
         
+        for iso in self.ref.significant_svars:
+            gene = iso.split('-')[0]
+            if gene in self.ref.gene2gene:
+                print(gene)
+        
         l = str(len(self.ref.gene2gene))
         c = 1
         # only allow gene-genes that are already PPI (handled in References())
