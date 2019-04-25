@@ -73,7 +73,7 @@ class References():
             infile.readline()
             for line in infile:
                 line = line.strip().split('\t')
-                if float(line[3]) < 0.1:
+                if float(line[4]) < 0.1:
                     self.significant_svars.add(line[0])
         return
     
