@@ -4,7 +4,7 @@ import subprocess
 import os
 
 setup(
-      name = 'protein_mechanism_graphs',
+      name = 'SINBAD',
       version = '1.2',
       description = 'description',
       author = 'Sean West',
@@ -15,7 +15,7 @@ setup(
                       },
       entry_points = {
                       'console_scripts':[
-                                         'protein_mechanism_graphs = multi_granularity_graphs.control:smain'
+                                         'sinbad = multi_granularity_graphs.control:smain'
                                          ]
                       },
       long_description = 'Construct potential PPI mechanism changes using survival analysis results.',
