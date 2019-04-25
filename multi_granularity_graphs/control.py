@@ -5,6 +5,7 @@ from multi_granularity_graphs import Graphs
 class Control():
     def main(self):
         inputs = Inputs()
+        print(inputs.args)
         
         references = References()
         references.set_all_references(inputs.args)
