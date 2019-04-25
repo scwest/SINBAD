@@ -11,7 +11,7 @@ class Control():
         references.set_all_references(inputs.args)
         
         graphs = Graphs(references, inputs.args['min_threshold'])
-        graph = construct()
+        graph = graphs.construct()
         
         output = Output(inputs.args['output'])
         output.export(graph)
