@@ -1,6 +1,7 @@
 from multi_granularity_graphs import Inputs
 from multi_granularity_graphs import References
 from multi_granularity_graphs import Graphs
+from multi_granularity_graphs import Output
 
 class Control():
     def main(self):

@@ -1,4 +1,4 @@
-class Outputs():
+class Output():
     def __init__(self, output_filename):
         self._graph_filename = output_filename
         
