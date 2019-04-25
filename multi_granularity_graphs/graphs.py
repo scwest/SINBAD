@@ -28,7 +28,7 @@ class Graphs():
             if not sum([(svar in self.ref.significant_svars) for svar in self.ref.gene2svars[gene1]]): continue
             # command could be faster by continuing at first False instance
             num_gene_with_sig += 1
-            
+                       
             domain_types_raw = self._get_domain_types(gene1, False)
             domain_types_filt = self._get_domain_types(gene1, True)
             
@@ -93,8 +93,11 @@ class Graphs():
         return domain_types
     
     def _has_enough_expression(self, svar):
-        if self.ref.proportion_expressed[svar] < 1-self.min_threshold:
-            return False
+        if svar in self.ref.proportion_expressed:
+            if self.ref.proportion_expressed[svar] < 1-self.min_threshold:
+                return False
+        else:
+            sys.stdout.write('\nWarning: '+svar+' is not in the expression file.\n')
         return True
     
     
