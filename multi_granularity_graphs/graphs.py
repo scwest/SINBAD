@@ -7,6 +7,7 @@ class Graphs():
         self.min_threshold = min_threshold
     
     def construct(self):
+        sys.stdout.write('Constructing MGGs')
         graph = []
         
         l = str(len(self.ref.gene2gene))
@@ -40,8 +41,9 @@ class Graphs():
                         if domain_types_raw[domain1] == 'neither' and domain_types_filt[domain1] == 'neither':
                             continue
                         
-                        edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain2]]
-                        graph.append(edge)                
+                        edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
+                        graph.append(edge)
+        sys.stdout.write('\n\tdone: '+str(len(graph))' MGGs found\n')            
         return graph
     
     def _get_domain_pairs(self, gene, svar2):

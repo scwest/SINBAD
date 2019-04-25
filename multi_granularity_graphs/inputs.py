@@ -6,6 +6,7 @@ class Inputs():
         self.args = self.parse_command_line()
         
     def parse_command_line(self):
+        sys.stdout.write('Collecting input ... ')
         shortopts = 'd:s:p:g:i:a:e:hm:o:'
         longopts = ['domain2domain=', 'gene2svars=', 'svar2protein=', 'gene2gene=', \
                     'svar2domains=', 'significant_svars=', 'expression=', 'help',\
@@ -44,6 +45,8 @@ class Inputs():
         if not opts:
             self.help()
             sys.exit(0)
+            
+        sys.stdout.write('done\n')
         return values
     
     def help(self):

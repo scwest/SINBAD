@@ -1,5 +1,6 @@
 from collections import defaultdict
 import numpy as np
+import sys 
 
 class References():
     def __init__(self):
@@ -12,6 +13,7 @@ class References():
         self.proportion_expressed = {}
         
     def set_all_references(self, locations):
+        sys.stdout.write('Uploading input ... ')
         self.set_domain2domain(locations['domain2domain'])
         self.set_gene2svars(locations['gene2svars'])
         self.set_svar2protein(locations['svar2protein'])
@@ -19,6 +21,7 @@ class References():
         self.set_svar2domains(locations['svar2domains'])
         self.set_significant_svars(locations['significant_svars'])
         self.set_proportion_expressed(locations['expression'])
+        sys.stdout.write('done\n')
         return
         
     def set_domain2domain(self, filename):
