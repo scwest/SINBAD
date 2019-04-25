@@ -51,7 +51,7 @@ class References():
                     for iso in rest.split(','):
                         self.gene2svars[ensg].add(iso)
                 except:
-                    print('Warning: Issue with gene2svars file. See line number '+str(c)+':\n'+line)
+                    sys.stdout.write('\nWarning: Issue with gene2svars file. See line number '+str(c)+':\n'+line + '\n')
         return
     
     def set_svar2protein(self, filename):

@@ -50,7 +50,10 @@ class Graphs():
                         if domain_types_raw[domain1] == 'neither' and domain_types_filt[domain1] == 'neither':
                             continue
                         num_interactions_with_dom += 1
-                        
+                        if domain1 not in domain_types_filt:
+                            domain_types_filt[domain1] = '-'
+                        if domain1 not in domain_types_raw:
+                            domain_types_raw[domain1] = '-'
                         edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
                         graph.append(edge)
         sys.stdout.write('\n\tdone\n')
