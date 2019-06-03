@@ -98,15 +98,15 @@ required parameters:\
 	-p	--svar2protein=			&lt;Splice variant to protein file&gt;
 	-g	--gene2gene=			&lt;Gene to gene file; products are physical PPIs&gt;
 	-i	--svar2domains=			&lt;Splice variant to domain file&gt;
-	-a	--significant_svars=	&lt;NEEP output; 1st col: name, 4th col: adjusted significance value&gt;
+	-a	--significant_svars=		&lt;NEEP output; 1st col: name, 4th col: adjusted significance value&gt;
 	-e	--expression=			&lt;CSV expression file&gt;
 </pre>
 
 <pre>
 optional parameters:\
-	-m	--min_threshold=		\<The minimum threshold used for NEEP. (default: 0.15)>\
-	-o	--output=				\<The directory for the SVG MGG files. (default: ./)>\
-	-h	--help=					\<Print help message>
+	-m	--min_threshold=		&lt;The minimum threshold used for NEEP. (default: 0.15)&gt;
+	-o	--output=				&lt;The directory for the SVG MGG files. (default: ./)&gt;
+	-h	--help=					&lt;Print help message&gt;
 </pre>
 	
 ## Output
