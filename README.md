@@ -105,8 +105,8 @@ required parameters:\
 <pre>
 optional parameters:\
 	-m	--min_threshold=		&lt;The minimum threshold used for NEEP. (default: 0.15)&gt;
-	-o	--output=				&lt;The directory for the SVG MGG files. (default: ./)&gt;
-	-h	--help=					&lt;Print help message&gt;
+	-o	--output=			&lt;The directory for the SVG MGG files. (default: ./)&gt;
+	-h	--help=				&lt;Print help message&gt;
 </pre>
 	
 ## Output
