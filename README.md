@@ -12,6 +12,9 @@ One could use the output to visualize these PPI and subsequently address whether
 This code is meant to be used in conjunction with NEEP (https://github.com/thecodingdoc/neep) but can be used with any files in the required format. So, one could use Cox PH for the survival values or use any alternative PPI, DDI, or splice variant annotation sources. 
 
 ## Installation
+Prior to installation:
+Graphviz must be installed for Python as well as for the system.
+
 Using pip:
 
 ```console
@@ -27,7 +30,8 @@ python setup.py install
 ```
 
 ## Before Use
-Some user construction of input files is required (to standardize information format). Specifically, they need the following files:
+Some user construction of input files is required (to standardize information format). We provide examples of these files in the SINBAD/docs folder. These examples were created using prior versions of Ensembl, 3did, and BioGRID. We suggest that the user create up-to-date versions of these files using their desired databases. 
+Specifically, SINBAD requires the following files:
 
 **Domain-domain interaction file**
 A file that contains physical domain interaction predictions/annotations.
@@ -93,11 +97,14 @@ required parameters:\
 	-p	--svar2protein=			<Splice variant to protein file>\
 	-g	--gene2gene=			<Gene to gene file; products are physical PPIs>\
 	-i	--svar2domains=			<Splice variant to domain file>\
-	-a	--significant_svars=	<NEEP output; 1st col: name, 4th col: adjusted significance value>\
+	-a	--significant_svars=	<NEEP output; 1st col: splice variant name, 4th col: adjusted significance value>\
 	-e	--expression=			<CSV expression file>
 	
 optional parameters:\
 	-m	--min_threshold=		<The minimum threshold used for NEEP. (default: 0.15)>\
-	-o	--output=				<The file for the graph paths. (default: multi\_granularity\_graphs.tsv)>\
+	-o	--output=				<The directory for the SVG MGG files. (default: ./)>\
 	-h	--help=					<Print help message>
+	
+## Output
+Two examples of the output are placed into SINBAD/docs. These two examples were created using the LUAD cancer data set from The Cancer Genome Atlas. Each output file (.svg) is a multi-granularity graph (MGG). These are aggregated visualizations of the *splice\_variant-domain-domain-splice\_variant* paths. The MGG has four rows. The first row are the survival-significant splice variants, in purple. The second row are the gained/ghost domains that belong to the significant splice variant. Each of these domain nodes are split into two sides, with two colors. The left side is for calculating the gained/ghost/neither membership of the domain using ALL splice variants belonging to the parent gene. The right side filters the splice variants used by requiring them to have greater than 1-*min_threshold* patients expressed. For this row, green is a gained domain, blue is a ghost domain, and white is neither. The third row are the physical domain targets of the gained/ghost domains, in gray. The final row are the potentially interacting splice variants, in dark blue. These splice variants are merged if they have the same edge pattern and come from the same gene.
 

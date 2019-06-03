@@ -1,70 +1,116 @@
 import sys 
 import itertools
 
+from multi_granularity_graphs import Visual
+
 class Graphs():
     def __init__(self, references, min_threshold):
         self.ref = references
         self.min_threshold = min_threshold
+        self.graphs = {} # self.graphs[gene] = Graph()
+        
+    class Graph():
+        '''
+        Each graph represents the Multi-Granularity Graph associated with a gene (possibly multiple splice variants).
+        '''
+        def __init__(self):
+            self.edges = []
+            self.visual = Visual()
+            
+        def add_edge(self, svar1, domain1, domain2, svar2, domain_type_raw, domain_type_filt):
+            self.edges.append([svar1, domain1, domain2, svar2, domain_type_raw, domain_type_filt])
+            return
+        
+        def visualize(self, output_filename):
+            self.visual.generate(self.edges, output_filename)
+            return
+        
+    class _Report():
+        '''
+        This class was added to simplify the self.construct() method.
+        It conducts all the user level communication so that the self.construct() 
+        method doesn't look cluttered.
+        '''
+        def __init__(self, total):
+            self.num_gene2gene = 0
+            self.num_gene_with_sig = 0
+            self.num_interactions = 0
+            self.num_interactions_with_dom = 0
+            self.c = 1
+            self.total = str(total)
+            self.num_mggs = 0
+            
+        def initial_to_system(self):
+            sys.stdout.write('Constructing MGGs\n')
+            return
+        
+        def iteration(self):
+            sys.stdout.write('\r\t'+str(self.c)+' of '+self.total)
+            sys.stdout.flush()
+            self.c += 1
+            return
+        
+        def final_to_system(self):
+            sys.stdout.write('\n\tdone\n')
+            sys.stdout.write('\tnumber of PPIs: '+str(self.num_gene2gene) + '\n')
+            sys.stdout.write('\t   with significant splice variant: '+str(self.num_gene_with_sig) +'\n')
+            sys.stdout.write('\tnumber of splice variant interactions: '+str(self.num_interactions) + '\n')
+            sys.stdout.write('\t   with gained/ghost domains: '+str(self.num_interactions_with_dom) + '\n')
+            sys.stdout.write('\tTotal MGGs created: '+str(self.num_mggs)+'\n')
+            #sys.stdout.write('\tMGG paths found: '+str(len(graph))+'\n') 
+            return
     
     def construct(self):
-        sys.stdout.write('Constructing MGGs\n')
-        graph = []
+        '''
+        This full functionality of this class is utilized by calling this method. 
+        self.construct() will generate all the graphs associated with the input data. 
+        '''
+        report = self._Report(len(self.ref.gene2gene))
+        report.initial_to_system()
         
-        num_gene2gene = 0
-        num_gene_with_sig = 0
-        num_interactions = 0
-        num_interactions_with_dom = 0
-        
-        l = str(len(self.ref.gene2gene))
-        c = 1
         # only allow gene-genes that are already PPI (handled in References())
         for gene1, gene2s in self.ref.gene2gene.items(): 
-            num_gene2gene += 1
-            sys.stdout.write('\r\t'+str(c)+' of '+l)
-            sys.stdout.flush()
-            c += 1
+            report.iteration()
+            report.num_gene2gene += 1
                         
             # ignore genes without any significant splice variants
-            if not sum([(svar in self.ref.significant_svars) for svar in self.ref.gene2svars[gene1]]): continue
-            # command could be faster by continuing at first False instance
-            num_gene_with_sig += 1
+            if not sum([(svar in self.ref.significant_svars) for svar in self.ref.gene2svars[gene1]]): 
+                continue
+            report.num_gene_with_sig += 1
                        
             domain_types_raw = self._get_domain_types(gene1, False)
             domain_types_filt = self._get_domain_types(gene1, True)
             
             for gene2 in gene2s:
                 for svar1, svar2 in itertools.product(self.ref.gene2svars[gene1], self.ref.gene2svars[gene2]):
-                    num_interactions += 1
+                    report.num_interactions += 1
                     
                     # ignore splice variants without known protein products
-                    if svar1 not in self.ref.svar2protein:
+                    if svar1 not in self.ref.svar2protein: 
                         continue
-                    
                     # ignore splice variants that are insignificant
-                    if svar1 not in self.ref.significant_svars:
+                    if svar1 not in self.ref.significant_svars: 
                         continue
             
                     for domain1, domain2 in self._get_domain_pairs(gene1, svar2):
                         # ignore domains that are not 'gained' or 'ghost'
-                        #    i.e. domains without unique attributes for survival significance
                         if domain_types_raw[domain1] == 'neither' and domain_types_filt[domain1] == 'neither':
                             continue
-                        num_interactions_with_dom += 1
+                        report.num_interactions_with_dom += 1
+                        
                         if domain1 not in domain_types_filt:
                             domain_types_filt[domain1] = '-'
                         if domain1 not in domain_types_raw:
                             domain_types_raw[domain1] = '-'
-                        edge = [svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1]]
-                        if edge not in graph:
-                            graph.append(edge)
                         
-        sys.stdout.write('\n\tdone\n')
-        sys.stdout.write('\tnumber of PPIs: '+str(num_gene2gene) + '\n')
-        sys.stdout.write('\t   with significant splice variant: '+str(num_gene_with_sig) +'\n')
-        sys.stdout.write('\tnumber of splice variant interactions: '+str(num_interactions) + '\n')
-        sys.stdout.write('\t   with gained/ghost domains: '+str(num_interactions_with_dom) + '\n')
-        sys.stdout.write('\tMGG paths found: '+str(len(graph))+'\n')            
-        return graph
+                        if gene1 not in self.graphs:
+                            self.graphs[gene1] = self.Graph()
+                            report.num_mggs += 1
+                        self.graphs[gene1].add_edge(svar1, domain1, domain2, svar2, domain_types_raw[domain1], domain_types_filt[domain1])
+                            
+                        
+        report.final_to_system()                        
+        return
     
     def _get_domain_pairs(self, gene, svar2):
         domain_pairs = []
@@ -103,6 +149,7 @@ class Graphs():
                 return False
         else:
             sys.stdout.write('\nWarning: '+svar+' is not in the expression file.\n')
+            return False
         return True
     
     
