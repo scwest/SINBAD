@@ -1,6 +1,6 @@
 # SINBAD: Survival-significant Isoform Networks By Altered Domain-inclusion
 ## Purpose
-This code should be used for identifying potential protein-protein interaction (PPI) mechanistic changes based on survival analysis significance. In short, the code identifies multi-granularity graphs as *splice\_variant-domain-domain-splice\_variant* paths. 
+This code should be used for identifying potential protein-protein interaction (PPI) mechanistic changes based on survival analysis significance. In short, the code identifies multi-granularity graphs (MGGs) as *splice\_variant-domain-domain-splice\_variant* paths. 
 
 The first splice variant must be significant for patient survival. The first domain must be either gained or ghost. The splice variants must belong to a known physical PPI.
 
@@ -18,14 +18,14 @@ Graphviz must be installed for Python as well as for the system.
 Using pip:
 
 ```console
-cd /protein_mechanism_graphs
+cd /SINBAD
 pip install .
 ```
 
 Using setuptools:
 
 ```console
-cd /protein_mechanism_graphs
+cd /SINBAD
 python setup.py install
 ```
 
@@ -85,11 +85,11 @@ Required format:
 ## Test
 ```console
 cd SINBAD/test/
-source test_output.txt
+source small_test.txt
 ```
 
 ## Usage
-command: multi\_granularity\_graphs
+command: sinbad
 
 <pre>
 required parameters:\
@@ -110,5 +110,5 @@ optional parameters:\
 </pre>
 	
 ## Output
-Two examples of the output are placed into SINBAD/docs. These two examples were created using the LUAD cancer data set from The Cancer Genome Atlas. Each output file (.svg) is a multi-granularity graph (MGG). These are aggregated visualizations of the *splice\_variant-domain-domain-splice\_variant* paths. The MGG has four rows. The first row are the survival-significant splice variants, in purple. The second row are the gained/ghost domains that belong to the significant splice variant. Each of these domain nodes are split into two sides, with two colors. The left side is for calculating the gained/ghost/neither membership of the domain using ALL splice variants belonging to the parent gene. The right side filters the splice variants used by requiring them to have greater than 1-*min_threshold* patients expressed. For this row, green is a gained domain, blue is a ghost domain, and white is neither. The third row are the physical domain targets of the gained/ghost domains, in gray. The final row are the potentially interacting splice variants, in dark blue. These splice variants are merged if they have the same edge pattern and come from the same gene.
+Two examples of the output are placed into SINBAD/docs (MGG_DSG.svg, MGG_PLIN3.svg). These two examples were created using the LUAD cancer data set from The Cancer Genome Atlas. Each output file (.svg) is a multi-granularity graph (MGG). These are aggregated visualizations of the *splice\_variant-domain-domain-splice\_variant* paths. The MGG has four rows. The first row are the survival-significant splice variants, in purple. The second row are the gained/ghost domains that belong to the significant splice variant. Each of these domain nodes are split into two sides, with two colors. The left side is for calculating the gained/ghost/neither membership of the domain using ALL splice variants belonging to the parent gene. The right side filters the splice variants used by requiring them to have greater than 1-*min_threshold* patients expressed. For this row, green is a gained domain, blue is a ghost domain, and white is neither. The third row are the physical domain targets of the gained/ghost domains, in gray. The final row are the potentially interacting splice variants, in dark blue. These splice variants are merged if they have the same edge pattern and come from the same gene.
 
