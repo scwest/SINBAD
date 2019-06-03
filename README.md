@@ -92,18 +92,18 @@ source test_output.txt
 command: multi\_granularity\_graphs
 
 required parameters:\
-&nbsp;&nbsp;&nbsp;&nbsp;-d&nbsp;--domain2domain=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Domain-domain interaction file>\
-&nbsp;&nbsp;&nbsp;&nbsp;-s&nbsp;--gene2svars=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Gene to splice variant file>\
-&nbsp;&nbsp;&nbsp;&nbsp;-p&nbsp;--svar2protein=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Splice variant to protein file>\
-&nbsp;&nbsp;&nbsp;&nbsp;-g&nbsp;--gene2gene=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Gene to gene file; products are physical PPIs>\
-&nbsp;&nbsp;&nbsp;&nbsp;-i&nbsp;--svar2domains=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Splice variant to domain file>\
-&nbsp;&nbsp;&nbsp;&nbsp;-a&nbsp;--significant_svars=&nbsp;<NEEP output; 1st col: splice variant name, 4th col: adjusted significance value>\
-&nbsp;&nbsp;&nbsp;&nbsp;-e&nbsp;--expression=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CSV expression file>
+	-d	--domain2domain=		<Domain-domain interaction file>\
+	-s	--gene2svars=			<Gene to splice variant file>\
+	-p	--svar2protein=			<Splice variant to protein file>\
+	-g	--gene2gene=			<Gene to gene file; products are physical PPIs>\
+	-i	--svar2domains=			<Splice variant to domain file>\
+	-a	--significant_svars=	<NEEP output; 1st col: name, 4th col: adjusted significance value>\
+	-e	--expression=			<CSV expression file>
 	
 optional parameters:\
-&nbsp;&nbsp;&nbsp;&nbsp;-m&nbsp;--min_threshold=&nbsp;<The minimum threshold used for NEEP. (default: 0.15)>\
-&nbsp;&nbsp;&nbsp;&nbsp;-o&nbsp;--output=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<The directory for the SVG MGG files. (default: ./)>\
-&nbsp;&nbsp;&nbsp;&nbsp;-h&nbsp;--help=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Print help message>
+	-m	--min_threshold=		<The minimum threshold used for NEEP. (default: 0.15)>\
+	-o	--output=				<The directory for the SVG MGG files. (default: ./)>\
+	-h	--help=					<Print help message>
 	
 ## Output
 Two examples of the output are placed into SINBAD/docs. These two examples were created using the LUAD cancer data set from The Cancer Genome Atlas. Each output file (.svg) is a multi-granularity graph (MGG). These are aggregated visualizations of the *splice\_variant-domain-domain-splice\_variant* paths. The MGG has four rows. The first row are the survival-significant splice variants, in purple. The second row are the gained/ghost domains that belong to the significant splice variant. Each of these domain nodes are split into two sides, with two colors. The left side is for calculating the gained/ghost/neither membership of the domain using ALL splice variants belonging to the parent gene. The right side filters the splice variants used by requiring them to have greater than 1-*min_threshold* patients expressed. For this row, green is a gained domain, blue is a ghost domain, and white is neither. The third row are the physical domain targets of the gained/ghost domains, in gray. The final row are the potentially interacting splice variants, in dark blue. These splice variants are merged if they have the same edge pattern and come from the same gene.
