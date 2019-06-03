@@ -93,13 +93,13 @@ command: multi\_granularity\_graphs
 
 <pre>
 required parameters:\
-	-d	--domain2domain=		\<Domain-domain interaction file>\
-	-s	--gene2svars=			\<Gene to splice variant file>\
-	-p	--svar2protein=			\<Splice variant to protein file>\
-	-g	--gene2gene=			\<Gene to gene file; products are physical PPIs>\
-	-i	--svar2domains=			\<Splice variant to domain file>\
-	-a	--significant_svars=	\<NEEP output; 1st col: name, 4th col: adjusted significance value>\
-	-e	--expression=			\<CSV expression file>
+	-d	--domain2domain=		&lt;Domain-domain interaction file&gt;
+	-s	--gene2svars=			&lt;Gene to splice variant file&gt;
+	-p	--svar2protein=			&lt;Splice variant to protein file&gt;
+	-g	--gene2gene=			&lt;Gene to gene file; products are physical PPIs&gt;
+	-i	--svar2domains=			&lt;Splice variant to domain file&gt;
+	-a	--significant_svars=	&lt;NEEP output; 1st col: name, 4th col: adjusted significance value&gt;
+	-e	--expression=			&lt;CSV expression file&gt;
 </pre>
 
 <pre>
