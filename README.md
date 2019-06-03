@@ -85,7 +85,7 @@ Required format:
 ## Test
 ```console
 cd SINBAD/test/
-source small_test.txt
+sh small_test.txt
 ```
 
 ## Usage
