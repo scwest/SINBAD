@@ -5,7 +5,7 @@ import os
 
 setup(
       name = 'SINBAD',
-      version = '1.2',
+      version = '2.0',
       description = 'description',
       author = 'Sean West',
       url = 'tbd',
