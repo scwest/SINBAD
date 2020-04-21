@@ -17,7 +17,8 @@ class References():
         sys.stdout.flush()
         self.set_domain2domain(locations['domain2domain'])
         self.set_gene2svars(locations['gene2svars'])
-        self.set_svar2protein(locations['svar2protein'])
+        if 'svar2protein' in locations:
+            self.set_svar2protein(locations['svar2protein'])
         self.set_gene2gene(locations['gene2gene'])
         self.set_svar2domains(locations['svar2domains'])
         self.set_significant_svars(locations['significant_svars'])

@@ -86,8 +86,9 @@ class Graphs():
                     report.num_interactions += 1
                     
                     # ignore splice variants without known protein products
-                    if svar1 not in self.ref.svar2protein: 
-                        continue
+                    if self.ref.svar2protein:
+                        if svar1 not in self.ref.svar2protein: 
+                            continue
                     # ignore splice variants that are insignificant
                     if svar1 not in self.ref.significant_svars: 
                         continue
